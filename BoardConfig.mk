@@ -14,14 +14,7 @@
 # limitations under the License.
 #
 
-# This contains the module build definitions for the hardware-specific
-# components for this device.
-#
-# As much as possible, those components should be built unconditionally,
-# with device-specific names to avoid collisions, to avoid device-specific
-# bitrot and build breakages. Building a component unconditionally does
-# *not* include it on all devices, so it is safe even with hardware-specific
-# components.
+DEVICE_PATH := device/lenovo/X505X
 
 # Architecture
 TARGET_ARCH := arm64
@@ -42,16 +35,13 @@ TARGET_USES_64_BIT_BINDER := true
 TARGET_BOOTLOADER_BOARD_NAME := msm8937
 TARGET_NO_BOOTLOADER := true
 
-# Kernel
-TARGET_PREBUILT_KERNEL := device/lenovo/X505X/prebuilt/Image.gz
-TARGET_PREBUILT_DTB := device/lenovo/X505X/prebuilt/dtb.img
-BOARD_PREBUILT_DTBIMAGE_PATH := device/lenovo/X505X/prebuilt/dtb.img
+# Kernel - Prebuilt Logic
+# Standardizing on BOARD_PREBUILT_DTBIMAGE for Android 11/12 compatibility
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
+BOARD_PREBUILT_DTBIMAGE := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
-# Crucial Fix: This tells the build system exactly where to find the prebuilt DTB image
-BOARD_PREBUILT_DTBIMAGE := device/lenovo/X505X/prebuilt/dtb.img
-
-TARGET_RECOVERY_DEVICE_DIRS := device/lenovo/X505X
+TARGET_RECOVERY_DEVICE_DIRS := $(DEVICE_PATH)
 
 # Kernel Offsets
 BOARD_KERNEL_BASE := 0x80000000
@@ -84,6 +74,15 @@ BOARD_KERNEL_CMDLINE += buildvariant=user
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE += androidboot.goodixtp=gtp
 
+# mkbootimg Arguments
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --dtb $(BOARD_PREBUILT_DTBIMAGE)
+BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
+BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE)
+BOARD_MKBOOTIMG_ARGS += --kernel_offset $(BOARD_KERNEL_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
+
 # Platform
 TARGET_BOARD_PLATFORM := msm8937
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno504
@@ -99,9 +98,9 @@ BOARD_PERSISTIMAGE_PARTITION_SIZE := 0x02000000
 BOARD_OEMIMAGE_PARTITION_SIZE := 0x10000000
 BOARD_SUPPORTS_DYNAMIC_PARTITIONS := true
 
-# Verified Boot (VBMeta) Fix
-TARGET_PREBUILT_VBMETA := device/lenovo/X505X/prebuilt/vbmeta.img
-BOARD_AVB_VBMETA_CUSTOM_IMAGE := device/lenovo/X505X/prebuilt/vbmeta.img
+# Verified Boot (VBMeta)
+TARGET_PREBUILT_VBMETA := $(DEVICE_PATH)/prebuilt/vbmeta.img
+BOARD_AVB_VBMETA_CUSTOM_IMAGE := $(TARGET_PREBUILT_VBMETA)
 
 # Treble & File Systems
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -138,5 +137,3 @@ TW_DEFAULT_BRIGHTNESS := 200
 
 # Device Assert
 TARGET_OTA_ASSERT_DEVICE := X505X,TB-X505X,TB-X505F,TB-X505L
-
-BOARD_MKBOOTIMG_ARGS += --dtb device/lenovo/X505X/prebuilt/dtb.img
