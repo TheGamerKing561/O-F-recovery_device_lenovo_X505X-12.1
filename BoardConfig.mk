@@ -45,6 +45,7 @@ TARGET_NO_BOOTLOADER := true
 # Kernel
 TARGET_PREBUILT_KERNEL := device/lenovo/X505X/prebuilt/Image.gz
 TARGET_PREBUILT_DTB := device/lenovo/X505X/prebuilt/dtb.img
+BOARD_PREBUILT_DTBIMAGE_PATH := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
 # Crucial Fix: This tells the build system exactly where to find the prebuilt DTB image
