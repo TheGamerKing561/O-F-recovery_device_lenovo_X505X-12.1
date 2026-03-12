@@ -1,19 +1,3 @@
-#
-# Copyright 2019 The Android Open Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
 DEVICE_PATH := device/lenovo/X505X
 
 # Architecture
@@ -35,13 +19,10 @@ TARGET_USES_64_BIT_BINDER := true
 TARGET_BOOTLOADER_BOARD_NAME := msm8937
 TARGET_NO_BOOTLOADER := true
 
-# Kernel - Prebuilt Logic
-# Standardizing on BOARD_PREBUILT_DTBIMAGE for Android 11/12 compatibility
+# Kernel - Using standard prebuilt variables to avoid "No Rule" error
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
 BOARD_PREBUILT_DTBIMAGE := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-
-TARGET_RECOVERY_DEVICE_DIRS := $(DEVICE_PATH)
 
 # Kernel Offsets
 BOARD_KERNEL_BASE := 0x80000000
@@ -59,22 +40,9 @@ BOARD_HEADER_VERSION := 2
 BOARD_HEADER_SIZE := 1648
 
 # Kernel Command Line
-BOARD_KERNEL_CMDLINE := androidboot.console=ttyMSM0
-BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom
-BOARD_KERNEL_CMDLINE += msm_rtb.filter=0x237
-BOARD_KERNEL_CMDLINE += ehci-hcd.park=3
-BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
-BOARD_KERNEL_CMDLINE += androidboot.bootdevice=7824900.sdhci
-BOARD_KERNEL_CMDLINE += earlycon=msm_serial_dm,0x78B0000
-BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware_mnt/image
-BOARD_KERNEL_CMDLINE += androidboot.usbconfigfs=true
-BOARD_KERNEL_CMDLINE += loop.max_part=7
-BOARD_KERNEL_CMDLINE += print.devkmsg=on
-BOARD_KERNEL_CMDLINE += buildvariant=user
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
-BOARD_KERNEL_CMDLINE += androidboot.goodixtp=gtp
+BOARD_KERNEL_CMDLINE := androidboot.console=ttyMSM0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_serial_dm,0x78B0000 firmware_class.path=/vendor/firmware_mnt/image androidboot.usbconfigfs=true loop.max_part=7 print.devkmsg=on buildvariant=user androidboot.selinux=permissive androidboot.goodixtp=gtp
 
-# mkbootimg Arguments
+# MKBOOTIMG Arguments
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --dtb $(BOARD_PREBUILT_DTBIMAGE)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
