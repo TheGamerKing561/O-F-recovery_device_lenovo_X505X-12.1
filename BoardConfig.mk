@@ -33,11 +33,11 @@ BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_SECOND_OFFSET := 0x00f00000
 
 # Kernel Header Info
-#BOARD_HASH_TYPE := sha1
-#BOARD_OS_VERSION := 9.0.0
-#BOARD_OS_PATCH_LEVEL := 2020-07
-#BOARD_HEADER_VERSION := 1
-#BOARD_HEADER_SIZE := 1648
+BOARD_HASH_TYPE := sha1
+BOARD_OS_VERSION := 9.0.0
+BOARD_OS_PATCH_LEVEL := 2020-07
+BOARD_HEADER_VERSION := 1
+BOARD_HEADER_SIZE := 1648
 
 # Kernel Command Line
 BOARD_KERNEL_CMDLINE := androidboot.console=ttyMSM0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_serial_dm,0x78B0000 firmware_class.path=/vendor/firmware_mnt/image androidboot.usbconfigfs=true loop.max_part=7 print.devkmsg=on buildvariant=user androidboot.selinux=permissive androidboot.goodixtp=gtp
