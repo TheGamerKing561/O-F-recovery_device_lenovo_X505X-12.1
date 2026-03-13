@@ -21,8 +21,6 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel - Using standard prebuilt variables to avoid "No Rule" error
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
-BOARD_PREBUILT_DTBIMAGE := $(DEVICE_PATH)/prebuilt/dtb.img
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
 # Kernel Offsets
 BOARD_KERNEL_BASE := 0x80000000
