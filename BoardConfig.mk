@@ -108,10 +108,21 @@ TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 200
 TW_EXTRA_LANGUAGES := false
 TW_USE_LEGACY_BATTERY_SERVICES := true
-TW_INCLUDE_LIBRESETPROP := false
-TW_INCLUDE_RESETPROP := false
-#TARGET_RECOVERY_DEVICE_MODULES += \
+TW_INCLUDE_LIBRESETPROP := true
+TW_INCLUDE_RESETPROP := true
+
+PRODUCT_PACKAGES += \
+    libresetprop \
+    resetprop
+
+TARGET_RECOVERY_DEVICE_MODULES += \
     libresetprop
+
+PRODUCT_COPY_FILES += \
+    $(OUT_DIR)/target/product/X505X/obj/SHARED_LIBRARIES/libresetprop_intermediates/LINKED/libresetprop.so:recovery/root/system/lib64/libresetprop.so
+
+TW_USE_FSCRYPT_POLICY := 1
+TW_EXCLUDE_APEX := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
