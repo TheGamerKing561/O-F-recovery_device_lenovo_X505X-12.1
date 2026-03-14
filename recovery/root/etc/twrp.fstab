@@ -4,14 +4,14 @@
 /boot            emmc              /dev/block/bootdevice/by-name/boot       flags=display="Boot"
 /recovery        emmc              /dev/block/bootdevice/by-name/recovery   flags=display="Recovery";backup=1
 
-/system          ext4              /dev/block/bootdevice/by-name/system     flags=backup=0
+/system          ext4              /dev/block/bootdevice/by-name/system     flags=backup=0;wipeingui
 /system_image    emmc              /dev/block/bootdevice/by-name/system     flags=display="System Image"
 /vendor          ext4              /dev/block/bootdevice/by-name/vendor     flags=wipeingui
 /vendor_image    emmc              /dev/block/bootdevice/by-name/vendor     flags=display="Vendor Image"
 
 /firmware        vfat              /dev/block/bootdevice/by-name/modem      flags=fsflags=ro;mounttodecrypt
 /modem           emmc              /dev/block/bootdevice/by-name/modem      flags=display="Firmware Image";backup=1
-/data            ext4              /dev/block/bootdevice/by-name/userdata   flags=display="Data";fileencryption=ice;length=-16384
+/data            ext4              /dev/block/bootdevice/by-name/userdata   flags=display="Data";fileencryption=ice;quota
 /cache           ext4              /dev/block/bootdevice/by-name/cache      flags=display="Cache"
 
 /persist         ext4              /dev/block/bootdevice/by-name/persist    flags=display="Persist";backup=1
