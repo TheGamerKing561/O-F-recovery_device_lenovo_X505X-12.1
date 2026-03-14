@@ -41,3 +41,7 @@ PRODUCT_PACKAGES += \
 # Keystore
 PRODUCT_PACKAGES += \
     android.system.keystore2
+
+PRODUCT_PACKAGES += \
+    libresetprop \
+    resetprop
