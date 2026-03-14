@@ -29,3 +29,6 @@ PRODUCT_BRAND := Lenovo
 PRODUCT_MODEL := Lenovo TB-X505X
 PRODUCT_MANUFACTURER := LENOVO
 
+PRODUCT_PACKAGES += \
+    qcom_decrypt \
+    qcom_decrypt_fbe
