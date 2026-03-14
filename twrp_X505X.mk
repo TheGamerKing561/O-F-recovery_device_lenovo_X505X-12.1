@@ -39,7 +39,7 @@ PRODUCT_PACKAGES += \
     tzdata_twrp
 
 # Keystore
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     android.system.keystore2
 
 PRODUCT_PACKAGES += \
