@@ -11,7 +11,7 @@
 
 /firmware        vfat              /dev/block/bootdevice/by-name/modem      flags=fsflags=ro;mounttodecrypt
 /modem           emmc              /dev/block/bootdevice/by-name/modem      flags=display="Firmware Image";backup=1
-/data            ext4              /dev/block/bootdevice/by-name/userdata   flags=display="Data";encryptable=footer;length=-16384
+/data            ext4              /dev/block/bootdevice/by-name/userdata   flags=display="Data";fileencryption=ice;length=-16384
 /cache           ext4              /dev/block/bootdevice/by-name/cache      flags=display="Cache"
 
 /persist         ext4              /dev/block/bootdevice/by-name/persist    flags=display="Persist";backup=1
